@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Django Migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# SQLite database
+*.sqlite3
+
+# VSCode and other IDE/editor settings
+.vscode/
+.idea/
+
+# Byte-compiled files
+*.log
+*.pot
+*.mo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secret files
+.env
+
+# Media files (optional, if large or user-generated)
+media/
+
+# Static files (optional, if collected via collectstatic)
+staticfiles/
+static/
