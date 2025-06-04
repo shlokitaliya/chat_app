@@ -1,12 +1,85 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Talkure{% endblock %}
+ {% block static %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}?v=1.1">
+<link rel="stylesheet" href="{% static 'css/base.css' %}?v=1.1"> 
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=1.1">
+{% endblock %}
 
 {% block content %}
-<nav class="navbar">
+<div class="wrapper">
 
-    hellobdgvdgfvjj
-</nav>
+    {% comment %} 
+            Main body for home page
+    {% endcomment %}
+
+
+
+    <div class="card">
+        <h1>Welcome to Talkure</h1>
+        <div class="features">
+        <div class="feature">
+            <img src="media/piggy.svg" alt="Free Icon" />
+            <h2>Free</h2>
+            <p>Talkure provides free cloud storage chats and media</p>
+        </div>
+        <div class="feature">
+            <img src="media/secure.svg" alt="Secure Icon" />
+            <h2>Secure</h2>
+            <p>Talkure keep your messages safe from hacker attack</p>
+        </div>
+        <div class="feature">
+            <img src="media/upload.svg" alt="Cloud Icon" />
+            <h2>Cloud</h2>
+            <p>Talkure let you access your messages from multiple devices</p>
+        </div>
+        </div>
+        <a href="#" class="login-btn">Login/Registration</a>
+    </div>
+
+
+
+
+    {% comment %} 
+            Footer code below
+    {% endcomment %}
+
+    {% comment %} <footer class="footer">
+        <div class="footer-container">
+        
+            <div class="footer-left">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="
+                        {% url 'home' %}
+                        ">Home</a></li>
+                    <li><a href="
+                        {% url 'about' %}
+                        ">About</a></li>
+                    <li><a href="
+                        {% url 'contact' %}
+                        ">Contact</a></li>
+                </ul>
+            </div>
+        
+            <div class="footer-middle">
+                <h3>Talkure</h3>
+                <p>Talkure is a free and open-source chat project built with Django.</p>
+                <p>&copy; 2025 Talkure. All rights reserved.</p>
+            </div>
+        
+            <div class="footer-right">
+                <h4>Connect</h4>
+                <a href="#"><img src="{% static 'images/github-icon.png' %}" alt="GitHub" /></a>
+                <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter" /></a>
+                <a href="#"><img src="{% static 'images/email-icon.png' %}" alt="Email" /></a>
+            </div>
+        </div>
+    </footer> {% endcomment %}
+</div>
+
 
 
 {% endblock %}
