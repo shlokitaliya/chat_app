@@ -16,29 +16,32 @@
     {% endcomment %}
 
 
+    <div>
+        <div class="card">
+            <h1>Welcome to Talkure</h1>
+            <div class="features">
+                <div class="feature">
+                    <img src="media/piggy.svg" alt="Free Icon" />
+                    <h2>Free</h2>
+                    <p>Talkure provides free cloud storage chats and media</p>
+                </div>
+                <div class="feature">
+                    <img src="media/secure.svg" alt="Secure Icon" />
+                    <h2>Secure</h2>
+                    <p>Talkure keep your messages safe from hacker attack</p>
+                </div>
+                <div class="feature">
+                    <img src="media/upload.svg" alt="Cloud Icon" />
+                    <h2>Cloud</h2>
+                    <p>Talkure let you access your messages from multiple devices</p>
+                </div>
+            </div>
+            <a href="#" class="login-btn">Login</a>
+            <a href="#" class="login-btn">SignUp</a>
+        </div>
 
-    <div class="card">
-        <h1>Welcome to Talkure</h1>
-        <div class="features">
-        <div class="feature">
-            <img src="media/piggy.svg" alt="Free Icon" />
-            <h2>Free</h2>
-            <p>Talkure provides free cloud storage chats and media</p>
-        </div>
-        <div class="feature">
-            <img src="media/secure.svg" alt="Secure Icon" />
-            <h2>Secure</h2>
-            <p>Talkure keep your messages safe from hacker attack</p>
-        </div>
-        <div class="feature">
-            <img src="media/upload.svg" alt="Cloud Icon" />
-            <h2>Cloud</h2>
-            <p>Talkure let you access your messages from multiple devices</p>
-        </div>
-        </div>
-        <a href="#" class="login-btn">Login/Registration</a>
     </div>
-
+   
 
 
 
@@ -46,20 +49,20 @@
             Footer code below
     {% endcomment %}
 
-    {% comment %} <footer class="footer">
+   <footer class="footer">
         <div class="footer-container">
         
             <div class="footer-left">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="
-                        {% url 'home' %}
+                        {% comment %} {% url 'home' %} {% endcomment %}
                         ">Home</a></li>
                     <li><a href="
-                        {% url 'about' %}
+                        {% comment %} {% url 'about' %} {% endcomment %}
                         ">About</a></li>
                     <li><a href="
-                        {% url 'contact' %}
+                        {% comment %} {% url 'contact' %} {% endcomment %}
                         ">Contact</a></li>
                 </ul>
             </div>
@@ -77,7 +80,7 @@
                 <a href="#"><img src="{% static 'images/email-icon.png' %}" alt="Email" /></a>
             </div>
         </div>
-    </footer> {% endcomment %}
+    </footer> 
 </div>
 
 
