@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Talkure - Chat Home
+{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/chat_home.css' %}?v=1.2">
+{% endblock %}
+
+
+{% block content %}
+ <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Talkure</div>
+    <div class="nav-links">
+      <a href="" class="profile-pic">
+        <img src="profile.jpg" alt="Profile" />
+      </a>
+      <a href="" class="logout">
+        <!-- SVG logout icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </a>
+    </div>
+    <div class="mobile-menu-icon" onclick="toggleMenu()">
+      &#8942;
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="">👤 Profile</a>
+      <a href="">🚪 Logout</a>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main class="main-content">
+    <!-- Unique Code Display -->
+        <!-- Unique Code Display -->
+    <section class="user-code">
+    <label>Your Unique Code</label>
+    <div class="code-box">
+        <input type="text" value={{code}} disabled />
+    </div>
+    </section>
+
+    <!-- Search + Add -->
+    <section class="search-add">
+      <input type="text" placeholder="Search username..." />
+      <button>Add</button>
+    </section>
+
+    <!-- Friends List -->
+
+
+<!-- Friends List -->
+<section class="friends-list">
+  <!-- Sample friend -->
+  <div class="friend">
+    <img src="friend.jpg" alt="Friend Pic" />
+    <div class="friend-info">
+      <p class="name">John Doe</p>
+      <div class="actions">
+        <button class="chat-btn">Chat</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="friend">
+    <img src="friend.jpg" alt="Friend Pic" />
+    <div class="friend-info">
+      <p class="name">Jane Smith</p>
+      <div class="actions">
+        <button class="chat-btn">Chat</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("show");
+    }
+  </script>
+{% endblock %}

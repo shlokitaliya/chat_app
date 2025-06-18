@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Sign-Up{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/authentication/signup.css' %}?v=1.2">
+{% endblock %}
+
+{% block content %}
+<div class="signup-wrapper">
+  <div class="signup-container">
+        <div class="back-btn">
+            <a href="{% url 'home' %}">
+                <div class="back-arrow"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12" />
+                    <polyline points="12 19 5 12 12 5" />
+                    </svg>
+                </div>
+            </a>    
+             <h2 class="heading">Create Account</h2>
+        </div>
+       
+    <form method="POST">
+      {% csrf_token %}
+      
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="e.g. cyber_ninja42" required>
+      {% for message in messages %}
+        {% if "Username already exists" in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="e.g. neo@matrix.io" required>
+      {% for message in messages %}
+        {% if "Email already exists" in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Choose a strong password" required>
+
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+      {% for message in messages %}
+        {% if "Passwords do not match" in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+      {% for message in messages %}
+        {% if "Password must be at least 8 characters long." in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <button type="submit" class="submit-btn">Sign Up</button>
+
+      <!-- Generic success or other alerts (optional, bottom of form) -->
+      {% for message in messages %}
+        {% if "User created successfully" in message.message %}
+          <p style="color: green; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+      <h4 class="login-link">Already have an account? 
+       <a href="{% url 'login_view' %}">click here</a>
+    </h4>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/authentication/login.css' %}?v=1.2">
+{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+  <div class="login-container">
+    <div class="back-btn">
+      <a href="{% url 'home' %}">
+        <div class="back-arrow"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+        </div>
+      </a>    
+      <h2 class="heading">Login</h2>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="e.g. neo@matrix.io" required>
+      {% for message in messages %}
+        {% if "No account is linked with this email." in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Enter your password" required>
+      {% for message in messages %}
+        {% if "Incorrect password" in message.message %}
+          <p style="color: red; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <button type="submit" class="submit-btn">Login</button>
+
+      {% for message in messages %}
+        {% if "Login successful" in message.message %}
+          <p style="color: green; font-size: 0.9em; margin: 0;">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <h4 class="login-link">Don't have an account? 
+        <a href="{% url 'signup_view' %}">Sign up here</a>
+      </h4>
+    </form>
+  </div>
+</div>
+{% endblock %}
