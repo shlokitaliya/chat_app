@@ -65,11 +65,15 @@ def fetch_private_messages(request, friend_id):
         user = request.user
         friend = User.objects.get(id = friend_id)
 
+
         messages = PrivateChat.objects.filter(
             sender__in = [user,friend] ,
             receiver__in = [user, friend]
         ).order_by('timestamp')
     
+        print("User:", user, "Friend ID:", friend_id)
+        print("Query returned:", messages)
+
         formatted_messages = []
         for msg in messages:
             formatted_messages.append({
