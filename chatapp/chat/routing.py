@@ -1,6 +1,10 @@
-from chat.consumers import ChatConsumer
-from django.urls import re_path
+from django.urls import re_path,path
 
-websocket_urlpatterns = [
-    re_path(r'ws/socket_server/', ChatConsumer.as_asgi()),
-]
+def get_websocket_urlpatterns():
+    # ✅ Safe local import after setup is called
+    from chat.consumers import ChatConsumer
+    return [
+        path('ws/chat/<str:room_name>', ChatConsumer.as_asgi()),
+    ]
+
+websocket_urlpatterns = get_websocket_urlpatterns()

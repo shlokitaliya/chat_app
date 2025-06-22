@@ -27,7 +27,7 @@ urlpatterns = [
     path("chat/", include("chat.urls")),  # Chat app URLs
 
 
-    path("__reload__/", include("django_browser_reload.urls")),
+    path("__reload__/", include("django_browser_reload.urls")), 
 ]
 
 if settings.DEBUG:

@@ -14,13 +14,14 @@ SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.20.10.2",]
+ALLOWED_HOSTS = []
 
-
+LOGIN_URL = '/login/'
 # Application definition
 
 INSTALLED_APPS = [
     "channels",
+    "daphne",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -76,11 +77,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "chatapp.wsgi.application"
+# WSGI_APPLICATION = "chatapp.wsgi.application"
+ASGI_APPLICATION = "chatapp.asgi.application"
+
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+AUTH_USER_MODEL = 'authentication.User'
+
 
 DATABASES = {
      'default': {
@@ -93,14 +99,14 @@ DATABASES = {
     }
 }
 # settings.py
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             'hosts': [('127.0.0.1', 6379)],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 

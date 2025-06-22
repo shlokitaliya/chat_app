@@ -2,24 +2,26 @@ from django.db import models
 import uuid
 import random
 import string
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
 def auto_generate_special_id():
     length = 6
     while True:
-        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+        code = ''.join(random.choices(string.ascii_uppercase+string.digits, k=length))
         if not User.objects.filter(unique_code=code).exists():
             return code
         
 def generate_group_code():
     length = 8
     while True:
-        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+        code = ''.join(random.choices(string.ascii_uppercase+string.digits, k=length))
         if not Group.objects.filter(group_code=code).exists():
             return code
 
-class User(models.Model):
+class User(AbstractUser):
 
     class GenderTypes(models.TextChoices):
         MALE = 'Male','Male'
@@ -27,28 +29,15 @@ class User(models.Model):
         OTHER = 'Other','Other'
         FREFER_NOT_TO_SAY = 'Prefer not to say','Prefer not to say'
 
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)  # Store hashed passwords
+     # Extra fields
     unique_code = models.CharField(max_length=6, unique=True, editable=False, default=auto_generate_special_id)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-
-    profile_picture = models.ImageField(upload_to='profile_pic/users/',default='profile_pic/default.png',null=True,blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pic/users/', default='profile_pic/default.svg', null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
     bio = models.TextField(max_length=500, null=True, blank=True)
     gender = models.CharField(max_length=20, choices=GenderTypes.choices, null=True, blank=True)
-    # phone_number = models.CharField(max_length=15, null=True, blank=True)
-
 
     def __str__(self):
         return self.username
-
-    class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
 
 class PrivateChat(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_chats')
@@ -65,8 +54,8 @@ class PrivateChat(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=100)
     group_code = models.CharField(max_length=8, unique=True, default=generate_group_code, editable=False)
-    members = models.ManyToManyField(User, related_name='groups')
-    profile_pic = models.ImageField(upload_to='group_pics/', default='group_pics/default.png', null=True, blank=True)
+    members = models.ManyToManyField(User, related_name='chat_groups')
+    profile_pic = models.ImageField(upload_to='group_pics/', default='group_pics/default.svg', null=True, blank=True)
     description = models.TextField(max_length=500, null=True, blank=True)
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_groups')
@@ -87,3 +76,20 @@ class GroupMessage(models.Model):
     def __str__(self):
         return f"{self.sender.unique_code} in {self.group.name}: {self.message[:20]}"
 
+class Friendship(models.Model):
+    user = models.ForeignKey(User, related_name='friends', on_delete=models.CASCADE)
+    friend = models.ForeignKey(User, related_name='related_to', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'friend')
+
+    def __str__(self):
+        return f"{self.user.username} ↔ {self.friend.username}"
+
+def add_friend_db(user1, user2):
+    Friendship.objects.get_or_create(user=user1, friend=user2)
+    Friendship.objects.get_or_create(user=user2, friend=user1)
+
+def get_friends(user):
+    return User.objects.filter(related_to__user=user)
