@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile - Talkure{% endblock %}
+{% block static %} 
+<script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-20 p-6 bg-grey-500 rounded-xl shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">My Profile</h1>
+
+  <!-- Profile Picture -->
+  <div class="flex items-center justify-center mb-6">
+    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="w-24 h-24 rounded-full object-cover border-2 border-gray-300">
+  </div>
+
+  <!-- User Details -->
+  <div class="space-y-4 text-gray-800 text-sm sm:text-base">
+    <div class="flex justify-between">
+      <span class="font-semibold">Username:</span>
+      <span>{{ user.username }}</span>
+    </div>
+    <div class="flex justify-between">
+      <span class="font-semibold">Email:</span>
+      <span>{{ user.email }}</span>
+    </div>
+    <div class="flex justify-between">
+      <span class="font-semibold">Unique Code:</span>
+      <span class="font-mono bg-gray-100 px-2 py-0.5 rounded">{{ user.unique_code }}</span>
+    </div>
+    <div class="flex justify-between">
+      <span class="font-semibold">Date of Birth:</span>
+      <span>{{ user.dob|date:"d M Y" }}</span>
+    </div>
+    <div class="flex justify-between">
+      <span class="font-semibold">Gender:</span>
+      <span>{{ user.get_gender_display }}</span>
+    </div>
+    {% if user.bio %}
+    <div class="flex flex-col">
+      <span class="font-semibold mb-1">Bio:</span>
+      <p class="bg-gray-100 p-3 rounded">{{ user.bio }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Edit Profile Button -->
+  <div class="mt-6 text-center">
+    <a href="" class="inline-block px-5 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+      Edit Profile
+    </a>
+  </div>
+</div>
+{% endblock %}

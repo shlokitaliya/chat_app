@@ -19,7 +19,8 @@
       </svg>
     </button>
     <!-- Profile and Logout -->
-    <a class="w-8 h-8 rounded-full overflow-hidden border border-grey-300" href="#">
+    <h3>{{user.username}}</h3>
+    <a class="w-8 h-8 rounded-full overflow-hidden border border-grey-300" href="{% url "profile_view"%}">
       <img src="{{user.profile_picture.url}}" alt="profile">
     </a>
     <a href="{% url 'logout_view' %}" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-red-100 transition duration-200 shadow">
@@ -36,6 +37,22 @@
 <div class="pt-[10lvh] flex h-screen">
   <!-- Sidebar -->
   <aside id="sidebar" class="fixed top-[10lvh] left-0 w-64 h-[90lvh] bg-white border-r border-gray-200 p-4 overflow-y-auto flex-col transform transition-transform md:translate-x-0 -translate-x-full md:flex z-40">
+
+    <!-- User Code Box -->
+<div class="bg-gray-100 rounded-lg p-3 mb-4 flex items-center justify-between">
+  <div>
+    <p class="text-sm text-gray-500">Your Code</p>
+    <p id="user-code" class="text-sm font-semibold text-gray-800">{{ request.user.unique_code }}</p>
+  </div>
+  <button onclick="copyCode()" class="ml-2 text-blue-600 hover:text-blue-800 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  </button>
+</div>
+
 
     <h2 class="text-lg font-semibold mb-2 ml-4">Chats</h2>
     <form id="friend-search-form" class="flex items-center gap-2 px-3 py-2" method="POST" action="{% url 'add_friend'%}">
@@ -132,5 +149,17 @@
     sidebar.classList.toggle('-translate-x-full');
   });
 </script>
+
+<script>
+  function copyCode() {
+    const code = document.getElementById('user-code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+
+    }).catch(err => {
+      alert("Failed to copy code");
+    });
+  }
+</script>
+
 
 {% endblock %}

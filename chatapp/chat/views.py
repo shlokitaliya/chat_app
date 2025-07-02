@@ -87,3 +87,7 @@ def fetch_private_messages(request, friend_id):
         return JsonResponse({'error': 'Friend not found.'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+@login_required
+def profile_view(request):
+    return render(request, "chat/profile.html")
