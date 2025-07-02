@@ -21,4 +21,4 @@ EXPOSE 8000
 RUN python manage.py collectstatic --noinput
 
 # Start using gunicorn + ASGI worker (for Django Channels)
-CMD ["gunicorn", "chatapp.asgi:application", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+CMD ["daphne", "chatapp.asgi:application", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
