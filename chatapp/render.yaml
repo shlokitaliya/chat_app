@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: talkure-chat
+    name: django-chat-app
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn your_project_name.wsgi
+    startCommand: gunicorn chatapp.asgi:application
     envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: chatapp.settings
       - key: SECRET_KEY
-        value: your-secret-key-here
-      - key: DEBUG
-        value: true
+        generateValue: true

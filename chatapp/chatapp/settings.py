@@ -12,13 +12,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # from decouple import config
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False
+DEBUG = True
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+ALLOWED_HOSTS = ['*']
+
+SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14"
 
 
 LOGIN_URL = '/login/'
@@ -65,6 +66,8 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
 ROOT_URLCONF = "chatapp.urls"
 
 TEMPLATES = [
@@ -95,18 +98,21 @@ AUTH_USER_MODEL = 'authentication.User'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chat_app',           # your db name
+        'USER': 'postgres',          # your db usernameAdd commentMore actions
+        'PASSWORD': 'shlok',      # your db password
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 # settings.py
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get("REDIS_URL", "redis://127.0.0.1:6379")],
+            'hosts': [('127.0.0.1', 6379)],
 
         },
     },
