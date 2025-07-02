@@ -15,11 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # from decouple import config
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14"
+SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-key-for-dev")
+# SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14"
 
 
 LOGIN_URL = '/login/'
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
@@ -96,29 +98,40 @@ ASGI_APPLICATION = "chatapp.asgi.application"
 AUTH_USER_MODEL = 'authentication.User'
 
 
-
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_app',           # your db name
-        'USER': 'postgres',          # your db usernameAdd commentMore actions
-        'PASSWORD': 'shlok',      # your db password
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
-# settings.py
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],
 
+
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chat_app',           # your db name
+#         'USER': 'postgres',          # your db usernameAdd commentMore actions
+#         'PASSWORD': 'shlok',      # your db password
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+# settings.py
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [('127.0.0.1', 6379)],
+
+#         },
+#     },
+# }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get("REDIS_URL", "redis://localhost:6379")],
         },
     },
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

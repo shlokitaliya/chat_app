@@ -24,6 +24,7 @@ Django==5.2.1
 django-browser-reload==1.18.0
 django-extensions==4.1
 django-tailwind==4.0.1
+gunicorn==23.0.0
 h11==0.16.0
 hiredis==3.2.1
 httptools==0.6.4
@@ -35,6 +36,7 @@ markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
 msgpack==1.1.0
+packaging==25.0
 pillow==11.2.1
 psycopg2-binary==2.9.10
 pyasn1==0.6.1
@@ -46,6 +48,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
 python-slugify==8.0.4
 PyYAML==6.0.2
+redis==6.2.0
 requests==2.32.3
 rich==14.0.0
 service-identity==24.2.0
@@ -63,4 +66,5 @@ urllib3==2.4.0
 uvicorn==0.34.3
 watchfiles==1.0.5
 websockets==15.0.1
+whitenoise==6.9.0
 zope.interface==7.2
