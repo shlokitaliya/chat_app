@@ -2,66 +2,41 @@
 {% load static %}
 
 {% block title %}Talkure{% endblock %}
- {% block static %}
-
-<link rel="stylesheet" href="{% static 'css/base.css' %}?v=1.1"> 
-<link rel="stylesheet" href="{% static 'css/home.css' %}?v=1.1">
+{% block static %}
+<script src="https://cdn.tailwindcss.com"></script>
 {% endblock %}
 
 {% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div class="bg-white w-full max-w-4xl rounded-xl shadow p-6 text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">Welcome to Talkure</h1>
 
-
-    {% comment %} 
-            Main body for home page
-    {% endcomment %}
-
-
-     <div class="container">
-        <div class="card">
-            <h1>Welcome to Talkure</h1>
-            <div class="features">
-                <div class="feature">
-                    <img src="media/piggy.svg" alt="Free Icon" />
-                    <h2>Free</h2>
-                    <p>Talkure provides free cloud storage chats and media</p>
-                </div>
-                <div class="feature">
-                    <img src="media/secure.svg" alt="Secure Icon" />
-                    <h2>Secure</h2>
-                    <p>Talkure keep your messages safe from hacker attack</p>
-                </div>
-                <div class="feature">
-                    <img src="media/upload.svg" alt="Cloud Icon" />
-                    <h2>Cloud</h2>
-                    <p>Talkure let you access your messages from multiple devices</p>
-                </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div>
+                <img src="media/piggy.svg" alt="Free" class="mx-auto h-20 mb-3">
+                <h2 class="font-semibold text-gray-800">Free</h2>
+                <p class="text-sm text-gray-600">Free cloud storage for chat and media</p>
             </div>
-            <div class="btn">
-                {% if request.session.user_id %} 
-                    <a href="#" class="login-btn">Let's Chat</a>
-                {% else %}
-                    <a href="{% url 'login_view' %}" class="login-btn">Login</a>
-                    <a href="{% url 'signup_view' %}" class="login-btn">SignUp</a>
-                {% endif %}
+            <div>
+                <img src="media/secure.svg" alt="Secure" class="mx-auto h-20 mb-3">
+                <h2 class="font-semibold text-gray-800">Secure</h2>
+                <p class="text-sm text-gray-600">Safe from hacking and theft</p>
             </div>
-                
+            <div>
+                <img src="media/upload.svg" alt="Cloud" class="mx-auto h-20 mb-3">
+                <h2 class="font-semibold text-gray-800">Cloud</h2>
+                <p class="text-sm text-gray-600">Access from any device</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            {% if request.session.user_id %}
+                <a href="#" class="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition">Let's Chat</a>
+            {% else %}
+                <a href="{% url 'login_view' %}" class="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition">Login</a>
+                <a href="{% url 'signup_view' %}" class="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition">Sign Up</a>
+            {% endif %}
         </div>
     </div>
-            
-        
-      
-
- 
-   
-
-
-
-    {% comment %} 
-            Footer code below
-    {% endcomment %}
-
-   
-
-
-
+</div>
 {% endblock %}

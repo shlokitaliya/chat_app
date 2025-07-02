@@ -30,6 +30,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)  # this sets session and user
+                   
             messages.success(request, "Login successful.")
             return redirect('chat_home')
         else:

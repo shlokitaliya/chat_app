@@ -71,8 +71,8 @@ def fetch_private_messages(request, friend_id):
             receiver__in = [user, friend]
         ).order_by('timestamp')
     
-        print("User:", user, "Friend ID:", friend_id)
-        print("Query returned:", messages)
+        # print("User:", user, "Friend ID:", friend_id)
+        # print("Query returned:", messages)
 
         formatted_messages = []
         for msg in messages:
