@@ -9,3 +9,5 @@ services:
         value: chatapp.settings
       - key: SECRET_KEY
         generateValue: true
+      - key: RENDER_PYTHON_VERSION
+        value: "3.12"
