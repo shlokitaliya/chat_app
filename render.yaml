@@ -2,6 +2,9 @@ services:
   - type: web
     name: django-chat-app
     env: python
+    build:
+      environment:
+        pythonVersion: 3.12
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn chatapp.asgi:application
     envVars:
@@ -9,5 +12,3 @@ services:
         value: chatapp.settings
       - key: SECRET_KEY
         generateValue: true
-      - key: RENDER_PYTHON_VERSION
-        value: "3.12"
