@@ -18,7 +18,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/list
 
-RUN chmod +x node_modules/.bin/tailwindcss
+    
 
 # 5. Install Python dependencies
 COPY requirements.txt .
@@ -29,6 +29,9 @@ RUN pip install -r requirements.txt
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
+
+RUN chmod +x node_modules/.bin/tailwindcss
+
 COPY . .
 RUN npm run build  # tailwindcss build
 
