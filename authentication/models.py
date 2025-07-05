@@ -7,20 +7,33 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
+from django.db import connection
+
 def auto_generate_special_id():
+    from authentication.models import User  # local import to avoid issues
     length = 6
+
+    # Check if the table exists
+    if 'authentication_user' not in connection.introspection.table_names():
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
     while True:
-        code = ''.join(random.choices(string.ascii_uppercase+string.digits, k=length))
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
         if not User.objects.filter(unique_code=code).exists():
             return code
+
         
 def generate_group_code():
+    from authentication.models import Group  # local import
     length = 8
+
+    if 'authentication_group' not in connection.introspection.table_names():
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
     while True:
-        code = ''.join(random.choices(string.ascii_uppercase+string.digits, k=length))
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
         if not Group.objects.filter(group_code=code).exists():
             return code
-
 class User(AbstractUser):
 
     class GenderTypes(models.TextChoices):
