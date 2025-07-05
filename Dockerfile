@@ -34,7 +34,7 @@ RUN chmod +x node_modules/.bin/tailwindcss
 
 COPY . .
 RUN chmod +x ./node_modules/.bin/tailwindcss && \
-    ./node_modules/.bin/tailwindcss -i ./static/src/input.css -o ./static/css/output.css
+    ./node_modules/.bin/tailwindcss -i ./static/src/input.css -o ./static/dist/output.css
 
 # 7. Collect static files
 RUN python manage.py collectstatic --noinput
