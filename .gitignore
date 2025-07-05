@@ -40,3 +40,5 @@ media/
 # Static files (optional, if collected via collectstatic)
 staticfiles/
 static/
+
+!static/src/input.css
