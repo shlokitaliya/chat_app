@@ -4,7 +4,7 @@
 {% block title %}Talkure - Chat Home{% endblock %}
 
 {% block static %}
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="{% static 'dist/output.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -97,7 +97,7 @@
     </div>
 
     <div class="mt-auto border-t px-4 py-3 flex justify-between items-center text-sm bg-white">
-      <a href="#" class="text-gray-700 hover:text-blue-600 transition">Profile</a>
+      <a href="{% url 'profile_view'%}" class="text-gray-700 hover:text-blue-600 transition">Profile</a>
       <a href="#" class="text-gray-700 hover:text-blue-600 transition">Settings</a>
     </div>
   </aside>

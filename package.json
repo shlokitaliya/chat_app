@@ -1,0 +1,19 @@
+{
+  "name": "chat_app",
+  "version": "1.0.0",
+  "description": "| Page                  | URL             | Description                        |\r | --------------------- | --------------- | ---------------------------------- |\r | Index Page            | `/`             | Overview, login/signup entry point |\r | Login Page            | `/login/`       | Login via mobile or code           |\r | Signup Page           | `/signup/`      | Register with mobile/email         |\r | Dashboard             | `/dashboard/`   | List of contacts/chats             |\r | Chat Page             | `/chat/<code>/` | 1-on-1 chat via WebSocket          |\r | Audio/Video Call Page | `/call/<code>/` | Start a call (WebRTC)              |",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch",
+    "dev": "npx tailwindcss -i ./static/src/input.css -o ./static/dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

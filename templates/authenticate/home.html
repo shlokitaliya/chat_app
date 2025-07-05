@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block title %}Talkure{% endblock %}
 {% block static %}
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="{% static 'dist/output.css' %}">
 {% endblock %}
+{% block title %}Talkure{% endblock %}
+
 
         {% block content %}
         <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
