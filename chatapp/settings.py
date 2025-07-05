@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
 ]
+CSRF_TRUSTED_ORIGINS = ["https://chat-app-l1h5.onrender.com"]
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-key-for-dev")
 # SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14"
@@ -103,7 +104,7 @@ AUTH_USER_MODEL = 'authentication.User'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 }
 
 
