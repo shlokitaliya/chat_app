@@ -1,25 +1,36 @@
-# Use official Python 3.12 image
-FROM python:3.12-slim
+# 1. Base image
+FROM python:3.11-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# 2. Set environment
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Create and set working directory
+# 3. Working directory
 WORKDIR /app
 
-# Copy project files into the image
-COPY . /app/
+# 4. Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    nodejs \
+    npm \
+    && apt-get clean
 
-# Install Python dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# 5. Install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-# Expose the port (Render uses 0.0.0.0:8000)
-EXPOSE 8000
+# 6. Install Node + Tailwind CSS
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
+COPY . .
+RUN npm run build  # tailwindcss build
 
-
+# 7. Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Start using gunicorn + ASGI worker (for Django Channels)
+# 8. Expose port and run Daphne (ASGI)
+EXPOSE 8000
 CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "chatapp.asgi:application"]
-
