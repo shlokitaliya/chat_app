@@ -17,7 +17,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "chat-app-l1h5.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-key-for-dev")
 # SECRET_KEY = "django-insecure-a*(=g4+r2ob02ygl8^*xk2$_-rwlo7prk-)rr2!rq)8d_%%*14"

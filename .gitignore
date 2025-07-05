@@ -40,4 +40,4 @@ media/
 # Static files (optional, if collected via collectstatic)
 staticfiles/
 
-
+node_modules
