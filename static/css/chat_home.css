@@ -1,0 +1,82 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --slate: #64748b;
+  --border: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+@font-face {
+    font-family: 'feelfree';
+    src: url('./fonts/feelfree.ttf');
+    font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* navbar css */
+.navbar{
+  height: 10lvh;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left{
+  font-size: 3rem;
+  font-family: feelfree, arial;
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 40lvw;
+  text-align: center;
+  padding-top: 5px;
+  
+}
+.right{
+   /* border: 1px solid red; */
+   height: 100%;
+   width: 30lvw;
+   place-content: center;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   padding: 2lvh 0;
+}
+.right img{
+  height: 2lvh;
+  width: 2lvw;
+}
+.right a{
+  border-radius: 50%;
+  overflow: hidden;
+  height: 4lvh;
+  width: 4lvw;
+  padding: 7px;
+  margin: 5px;
+  text-decoration: none;
+}
+.profile{
+  border: 1px solid rgb(0, 0, 0);
+}
+.logout svg{
+  font-size: 1rem;
+}
+
+
+.main-content{
+  display: flex;
+  
+}
