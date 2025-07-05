@@ -9,12 +9,14 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # 4. Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    nodejs \
-    npm \
-    && apt-get clean
+RUN apt-get update && \
+    apt-get install -y --fix-missing \
+        build-essential \
+        curl \
+        nodejs \
+        npm && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/list
 
 # 5. Install Python dependencies
 COPY requirements.txt .
