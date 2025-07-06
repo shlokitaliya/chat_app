@@ -15,4 +15,4 @@ User.objects.create_superuser('admin', 'admin@example.com', 'admin123')" \
 | python manage.py shell
 
 # Start Daphne server
-exec daphne -b 0.0.0.0 -p 8000 chatapp.asgi:application
+exec daphne -b 0.0.0.0 -p 10000 chatapp.asgi:application

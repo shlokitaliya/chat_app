@@ -129,18 +129,22 @@ DATABASES = {
 #         },
 #     },
 # }
-REDIS_URL = os.environ.get("REDIS_URL", "redis://127.0.0.1:6379")
+from urllib.parse import urlparse
+
+redis_url = urlparse(os.getenv("REDIS_URL", ""))
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [REDIS_URL],
+            "hosts": [(redis_url.hostname, redis_url.port)],
+            "password": redis_url.password,
+            "ssl": redis_url.scheme == "rediss",
         },
     },
 }
 
-
-CELERY_BROKER_URL = os.environ.get("REDIS_URL")
+# CELERY_BROKER_URL = os.environ.get("REDIS_URL")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
