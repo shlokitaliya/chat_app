@@ -35,7 +35,7 @@ Thumbs.db
 .env
 
 # Media files (optional, if large or user-generated)
-media/
+
 
 # Static files (optional, if collected via collectstatic)
 staticfiles/
