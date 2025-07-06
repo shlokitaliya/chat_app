@@ -44,7 +44,7 @@ async function openChat(element){
     // socket = new WebSocket(`ws://${window.location.host}/ws/chat/${room_name}`);
     
     const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-    const socket = new WebSocket(`${protocol}://${window.location.host}/ws/chat/${roomName}`);
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws/chat/${roomName}`);
 
     // listen for incomming messages
     socket.onmessage = function (event) {
