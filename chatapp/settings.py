@@ -131,15 +131,14 @@ DATABASES = {
 # }
 from urllib.parse import urlparse
 
-redis_url = urlparse(os.getenv("REDIS_URL", ""))
+# redis_url = urlparse(os.getenv("REDIS_URL", ""))
 
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(redis_url.hostname, redis_url.port)],
-            "password": redis_url.password,
-            "ssl": redis_url.scheme == "rediss",
+            "hosts": "rediss://default:AdWQAAIjcDFiMjliMDc2YmRjZDE0ZDZjYmI0YTVkN2RkY2NkMTU4MnAxMA@inspired-marmoset-54672.upstash.io:6379",
+            
         },
     },
 }
