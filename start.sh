@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Apply migrations
-python manage.py migrate --noinput
-
+echo "=== Running Migrations ==="
+python manage.py makemigrations authentication --verbosity 2
+python manage.py migrate --verbosity 2
+echo "=== Collecting Static Files ==="
 # Collect static files
 python manage.py collectstatic --noinput
 
