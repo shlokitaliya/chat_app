@@ -21,7 +21,7 @@
     <!-- Profile and Logout -->
     <h3>{{user.username}}</h3>
     <a class="w-8 h-8 rounded-full overflow-hidden border border-grey-300" href="{% url "profile_view"%}">
-      <img src="{{user.profile_picture.url}}" alt="{% static 'media/profile_pic/default.svg'%}">
+      <img src="{{user.profile_picture.url}}" alt="https://github.com/shlokitaliya/chat_app/blob/main/static/profile_pic/default.svg">
     </a>
     <a href="{% url 'logout_view' %}" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-red-100 transition duration-200 shadow">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@
           data-username="{{ friend.user.username }}"
           data-picture-url="{{friend.user.profile_picture.url}}"
           onclick="openChat(this)">
-          <img src="{{friend.user.profile_picture.url}}" alt="Friend" class="w-10 h-10 rounded-full object-cover mr-3">
+          <img src="{{friend.user.profile_picture.url}}" alt="https://github.com/shlokitaliya/chat_app/blob/main/static/profile_pic/default.svg" class="w-10 h-10 rounded-full object-cover mr-3">
           <div class="flex flex-col overflow-hidden">
             <span class="text-sm font-medium text-gray-900">{{ friend.user.username }}</span>
             <span class="text-xs text-gray-500 truncate w-48">{{ friend.last_msg }}</span>
@@ -110,7 +110,7 @@
 
     <div id="chat_box" class="flex flex-col h-full hidden">
       <div class="flex items-center gap-3 bg-white px-4 py-3 shadow">
-        <img id="chat-friend-pic" src="{% static 'media/profile_pic/default.svg'%}" alt="{% static 'profile_pic/default.svg'%}" class="w-10 h-10 rounded-full object-cover">
+        <img id="chat-friend-pic" src="{% static 'media/profile_pic/default.svg'%}" alt="https://github.com/shlokitaliya/chat_app/blob/main/static/profile_pic/default.svg" class="w-10 h-10 rounded-full object-cover">
         <h2 id="chat-friend-name" class="text-lg font-semibold text-gray-800">Friend Name</h2>
       </div>
 
