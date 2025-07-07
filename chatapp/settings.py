@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # from decouple import config
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "chat-app-l1h5.onrender.com",
@@ -104,21 +104,21 @@ ASGI_APPLICATION = "chatapp.asgi.application"
 AUTH_USER_MODEL = 'authentication.User'
 
 
-# DATABASES = {
-# 'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
-# }
-
-
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_app',           # your db name
-        'USER': 'postgres',          # your db usernameAdd commentMore actions
-        'PASSWORD': 'shlok',      # your db password
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
+
+
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chat_app',           # your db name
+#         'USER': 'postgres',          # your db usernameAdd commentMore actions
+#         'PASSWORD': 'shlok',      # your db password
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # CHANNEL_LAYERS = {
 #     'default': {
