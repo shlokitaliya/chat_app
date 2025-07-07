@@ -61,6 +61,10 @@ async function openChat(element){
         appendMessage(data.message, timestamp, is_sender);
         message_area.scrollTop = message_area.scrollHeight;
     }
+    socket.onclose = () => {
+        console.warn("WebSocket closed. Retrying in 5 seconds...");
+        setTimeout(connectWebSocket, 5000); // Retry after 5 seconds
+    };
 
 };
 
