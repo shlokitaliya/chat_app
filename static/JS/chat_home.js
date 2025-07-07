@@ -14,7 +14,7 @@ async function openChat(element){
     document.getElementById('chat_box').classList.remove("hidden");
 
     document.getElementById('chat-friend-name').textContent = username;
-    document.getElementById('chat-friend-pic').src = pictureUrl
+    document.getElementById('chat-friend-pic').src = "https://raw.githubusercontent.com/shlokitaliya/chat_app/refs/heads/main/static/profile_pic/default.svg"
 
     const message_area = document.getElementById('messages-area');
     message_area.innerHTML = '';
